@@ -1,0 +1,23 @@
+{
+  "name": "reddit-word-backend",
+  "version": "0.0.1",
+  "description": "A reddit proxy with the design of MS Word",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/word-reddit/backend.git"
+  },
+  "author": "higgs01, garned",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/word-reddit/backend/issues"
+  },
+  "homepage": "https://github.com/word-reddit/backend#readme",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2"
+  }
+}
