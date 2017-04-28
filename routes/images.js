@@ -12,7 +12,7 @@ module.exports = function(app) {
         };
     
         console.log("[IMG] Serving " + url_parts.hostname + url_parts.pathname);
-    
+
         var callback = function(response) {
             if (response.statusCode === 200) {
                 res.writeHead(200, {
@@ -23,10 +23,27 @@ module.exports = function(app) {
             else {
                 res.writeHead(response.statusCode);
                 res.end();
+                console.log(response.statusCode);
             }
         };
-    
-        http.request(options, callback).end();
+        var request = http.request(options, callback);
+        request.on('error', function(e) {
+            res.status(404);
+            res.json({
+                error: "Not Found",
+                errorMessage: e
+            });
+        });
+
+        request.end();
+    });
+
+    app.get('/img', function(req, res) {
+        res.status(404);
+        res.json({
+            error: "Not Found",
+            errorMessage: "No url specified"
+        });
     });
     
 }
