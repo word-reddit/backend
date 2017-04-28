@@ -2,7 +2,7 @@
 Reddit-Word is a proxy to view reddit if it's blocked and if it should look as if you'd be working.
 
 ## License
-[MIT](LICENSE.md)
+[MIT](LICENSE)
 
 ## Contributors
  - [higgs01](https://github.com/higgs01)
