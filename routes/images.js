@@ -1,5 +1,6 @@
 var url = require("url");
 var http = require('follow-redirects').http;
+var endings = ["jpg", "jpeg", "png", "gif"];
 
 module.exports = function(app) {
     
@@ -10,7 +11,26 @@ module.exports = function(app) {
             host: url_parts.hostname,
             path: url_parts.pathname
         };
-    
+
+        var pathparts = url_parts.pathname.split(0);
+        var lastPart = pathparts[pathparts.length-1];
+
+        var contains = false;
+
+        endings.forEach(function(val, index) {
+            if(lastPart.toLowerCase().includes(val.toLowerCase())) 
+                contains = true;
+        });
+
+        if(!contains) {
+            res.status(403);
+            res.json({
+                error: "Forbidden",
+                errorMessage: "Only images allowed"
+            });
+            return;
+        }
+
         console.log("[IMG] Serving " + url_parts.hostname + url_parts.pathname);
 
         var callback = function(response) {
