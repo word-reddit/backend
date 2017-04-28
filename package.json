@@ -4,10 +4,11 @@
   "description": "A reddit proxy with the design of MS Word",
   "main": "index.js",
   "scripts": {
-    "test": "exit 0"
+    "test": "exit 0",
+    "start": "node index.js"
   },
   "engines": {
-    "node": "6.9.4"
+    "node": "6.6.0"
   },
   "repository": {
     "type": "git",
