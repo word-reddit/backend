@@ -3,10 +3,10 @@ var http = require('follow-redirects').http;
 var reddit_base_url = "https://www.reddit.com";
 
 module.exports = function(app) {
-    app.get('/', function (req, res) {
+    app.get('/', function(req, res) {
         res.redirect("/r/popular");
     });
-    
+
     app.get('/r/:subreddit', function(req, res) {
         handleRedditRequest(req, res, reddit_base_url + "/r/" + req.params.subreddit + "/.json");
     });
@@ -14,31 +14,31 @@ module.exports = function(app) {
     app.get('/r/:subreddit/?count=:count&after=:after_id', function(req, res) {
         handleRedditRequest(req, res, reddit_base_url + "/r/" + req.params.subreddit + "/.json" + "?count=" + req.params.count + "&after=" + req.params.after_id);
     });
-    
+
     app.get('/r/:subreddit/comments/:id/:name', function(req, res) {
         handleRedditRequest(req, res, reddit_base_url + "/r/" + req.params.subreddit + "/" + "comments/" + req.params.id + "/" + req.params.name + "/.json");
     });
-    
+
     app.get('/r/:subreddit/top', function(req, res) {
         handleRedditRequest(req, res, reddit_base_url + "/r/" + req.params.subreddit + "/top/.json");
     });
-    
+
     app.get('/r/:subreddit/new', function(req, res) {
         handleRedditRequest(req, res, reddit_base_url + "/r/" + req.params.subreddit + "/new/.json");
     });
-    
+
     app.get("/r/:subreddit/rising", function(req, res) {
         handleRedditRequest(req, res, reddit_base_url + "/r/" + req.params.subreddit + "/rising/.json");
     });
-    
+
     app.get("/r/:subreddit/controversial", function(req, res) {
         handleRedditRequest(req, res, reddit_base_url + "/r/" + req.params.subreddit + "/controversial/.json");
     });
-    
+
     app.get("/r/:subreddit/gilded", function(req, res) {
         handleRedditRequest(req, res, reddit_base_url + "/r/" + req.params.subreddit + "/gilded/.json");
     });
-    
+
     app.get('/u/:username', function(req, res) {
         handleRedditRequest(req, res, reddit_base_url + "/u/" + req.params.username + "/.json");
     });
@@ -55,11 +55,11 @@ module.exports = function(app) {
         var callback = function(response) {
             var body = '';
 
-            response.on('data', function(chunk){
+            response.on('data', function(chunk) {
                 body += chunk;
             });
 
-            response.on('end', function(){
+            response.on('end', function() {
                 var fbResponse = JSON.parse(body);
                 res.json(fbResponse);
             });
