@@ -61,13 +61,13 @@ module.exports = function(app) {
 
             response.on('end', function() {
                 var fbResponse = JSON.parse(body);
-                res.json(fbResponse);
+                res.jsonp(fbResponse);
             });
         };
         var request = http.request(options, callback);
         request.on("error", function(e) {
             res.status(404);
-            res.json({
+            res.jsonp({
                 error: "Not Found",
                 errorMessage: "Couldnt Reach the reddit servers"
             });
